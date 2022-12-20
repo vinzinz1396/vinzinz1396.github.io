@@ -1,0 +1,102 @@
+<!doctype html>
+<html>
+<head>
+<title>Esempio Assistente Virtuale</title>
+<meta name="description" content="our first virtual assistant">
+<meta name="keywords" content="chatbot chat bot virtual assistant">
+</head>
+<body bgcolor="#ffffff">
+<h1 style="color:#461e7d;" align="middle">Assistente Virtuale</h1>
+<p align="middle"><img src="earth.gif" alt="Earth" align="middle"></p>
+
+
+<style type='text/css'>
+    .embeddedServiceHelpButton .helpButton .uiButton {
+        background-color: #461e7d;
+        font-family: "Arial", sans-serif;
+    }
+    .embeddedServiceHelpButton .helpButton .uiButton:focus {
+        outline: 1px solid #461e7d;
+    }
+</style>
+
+
+
+<script type='text/javascript' src='https://service.force.com/embeddedservice/5.0/esw.min.js'></script>
+<script type='text/javascript'>
+    var initESW = function(gslbBaseURL) {
+        embedded_svc.settings.displayHelpButton = false; //Or false
+        embedded_svc.settings.language = 'it'; //For example, enter 'en' or 'en-US'
+
+
+
+       //embedded_svc.settings.defaultMinimizedText = '...'; //(Defaults to Chat with an Expert)
+        //embedded_svc.settings.disabledMinimizedText = '...'; //(Defaults to Agent Offline)
+
+
+
+       //embedded_svc.settings.loadingText = ''; //(Defaults to Loading)
+        //embedded_svc.settings.storageDomain = 'yourdomain.com'; //(Sets the domain for your deployment so that visitors can navigate subdomains during a chat session)
+
+
+
+       // Settings for Chat
+        //embedded_svc.settings.directToButtonRouting = function(prechatFormData) {
+            // Dynamically changes the button ID based on what the visitor enters in the pre-chat form.
+            // Returns a valid button ID.
+        //};
+        //embedded_svc.settings.prepopulatedPrechatFields = {}; //Sets the auto-population of pre-chat form fields
+        //embedded_svc.settings.fallbackRouting = []; //An array of button IDs, user IDs, or userId_buttonId
+        //embedded_svc.settings.offlineSupportMinimizedText = '...'; //(Defaults to Contact Us)
+
+
+
+       embedded_svc.settings.enabledFeatures = ['LiveAgent'];
+        embedded_svc.settings.entryFeature = 'LiveAgent';
+        embedded_svc.settings.smallCompanyLogoImgURL = "https://www.assoutenti.it/wp-content/uploads/2021/01/enel-logo.jpg"
+
+
+       embedded_svc.init(
+            'https://enelxconsumer--devchatbot.sandbox.my.salesforce.com',
+            'https://enelxconsumer--devchatbot.sandbox.my.site.com/community',
+            gslbBaseURL,
+            '00D7Z00000052b1',
+            'chat_test',
+            {
+                baseLiveAgentContentURL: 'https://c.la3-c1cs-fra.salesforceliveagent.com/content',
+                deploymentId: '5727Z000000Caol',
+                buttonId: '5737Z000000Cc8F',
+                baseLiveAgentURL: 'https://d.la3-c1cs-fra.salesforceliveagent.com/chat',
+                eswLiveAgentDevName: 'chat_test',
+                isOfflineSupportEnabled: false
+            }
+        );
+    };
+
+
+
+   if (!window.embedded_svc) {
+        var s = document.createElement('script');
+        s.setAttribute('src', 'https://enelxconsumer--devchatbot.sandbox.my.salesforce.com/embeddedservice/5.0/esw.min.js');
+        s.onload = function() {
+            initESW(null);
+        };
+        document.body.appendChild(s);
+    } else {
+        initESW('https://service.force.com');
+    }
+</script>
+
+<script type='text/javascript'>
+   function bootstrapChat() {
+      embedded_svc.bootstrapEmbeddedService();
+   }
+</script>
+<button onclick="bootstrapChat()">
+    Chat with an Expert
+</button>
+
+
+
+</body>
+</html>
